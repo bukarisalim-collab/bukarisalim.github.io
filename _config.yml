@@ -1,3 +1,11 @@
-title: My Custom Site Title
-description: Welcome to my awesome GitHub Pages website!
+title: My Portfolio
+description: Welcome to my personal showcase website.
 theme: minima
+
+# Navigation links at the top right of your site
+header_pages:
+  - index.md
+
+# Optional: Add your social profiles to the footer
+twitter_username: your_username
+github_username: your_username
