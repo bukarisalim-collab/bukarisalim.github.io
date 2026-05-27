@@ -3,109 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Learning & Engineering Portfolio</title>
+    <meta name="description" content="Portfolio for Salim Bukari, focused on AI, machine learning, deep learning, embedded systems, and electrical engineering.">
+    <title>Bukari Salim | AI & Engineering Portfolio</title>
     <style>
+        :root {
+            --bg: #f4f6f8;
+            --card: #ffffff;
+            --text: #334155;
+            --muted: #64748b;
+            --heading: #0f172a;
+            --border: #e2e8f0;
+            --blue: #2563eb;
+            --blue-soft: #eff6ff;
+            --blue-border: #bfdbfe;
+            --link: #0284c7;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text);
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
-            background-color: #f4f6f8;
+            background-color: var(--bg);
         }
-        
-        /* Profile Header Section Styling */
+
+        h1, h2, h3, p {
+            margin-top: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
         .profile-container {
-            background: #ffffff;
+            background: var(--card);
             border-radius: 16px;
-            padding: 40px 20px;
+            padding: 44px 24px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             margin-bottom: 40px;
         }
+
         .profile-name {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.7rem);
             font-weight: 800;
-            color: #0f172a;
-            margin: 0 0 10px 0;
+            color: var(--heading);
+            margin-bottom: 10px;
         }
+
         .profile-title {
             font-size: 1.2rem;
             color: #475569;
-            margin: 0 0 25px 0;
-            font-weight: 400;
+            margin-bottom: 14px;
+            font-weight: 500;
         }
+
+        .profile-summary {
+            max-width: 720px;
+            margin: 0 auto 28px auto;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
         .button-group {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
         }
+
         .social-btn {
             display: inline-flex;
             align-items: center;
-            background: #ffffff;
-            color: #334155;
-            border: 1px solid #e2e8f0;
+            gap: 8px;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
             padding: 10px 20px;
             border-radius: 12px;
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
             transition: all 0.2s ease;
         }
+
         .social-btn:hover {
             background: #f8fafc;
             border-color: #cbd5e1;
             transform: translateY(-1px);
         }
 
-        /* Unified Section Title Styling */
         .section-title-container {
             text-align: center;
-            margin-bottom: 35px;
-            margin-top: 60px;
+            margin: 60px 0 35px;
         }
+
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 750;
             margin-bottom: 12px;
-            color: #0f172a;
+            color: var(--heading);
         }
+
         .title-underline {
             width: 50px;
             height: 4px;
-            background-color: #2563eb;
+            background-color: var(--blue);
             margin: 0 auto;
             border-radius: 2px;
         }
 
-        /* Consistent Outer Box Layout */
         .outer-content-box {
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 35px;
-            background-color: #ffffff;
+            background-color: var(--card);
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            box-shadow: var(--shadow-soft);
         }
 
-        /* Inner Sub-Box Item Layout */
         .inner-item-card {
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 24px;
-            background: #ffffff;
+            background: var(--card);
             margin-bottom: 20px;
             position: relative;
         }
+
         .inner-item-card:last-child {
             margin-bottom: 0;
         }
 
-        /* Experience Specific Header Layout */
         .exp-header {
             display: flex;
             justify-content: space-between;
@@ -114,109 +152,122 @@
             gap: 15px;
             margin-bottom: 15px;
         }
+
         .exp-company-role {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 4px 0;
+            color: var(--heading);
+            margin-bottom: 4px;
         }
+
         .exp-date {
             font-size: 0.9rem;
-            color: #64748b;
+            color: var(--muted);
             margin: 0;
         }
-        .exp-logo-placeholder {
-            width: 60px;
-            height: 30px;
-            background-color: #111111; /* Simulates the dark EY badge background from your image */
-            color: #ffe600; /* Simulates yellow EY branding text color */
-            font-weight: 900;
+
+        .company-badge {
+            min-width: 64px;
+            height: 34px;
+            background-color: var(--heading);
+            color: #ffffff;
+            font-weight: 800;
             font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            letter-spacing: 0.5px;
+            border-radius: 8px;
+            letter-spacing: 0.4px;
+            padding: 0 10px;
         }
 
-        /* Project Formatting Layout */
         .project-title {
             font-size: 1.3rem;
             font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 10px 0;
+            color: var(--heading);
+            margin-bottom: 10px;
         }
-        .project-description {
-            font-size: 0.95rem;
+
+        .project-description,
+        .experience-description {
+            font-size: 0.96rem;
             color: #475569;
-            margin: 0 0 15px 0;
+            margin-bottom: 15px;
         }
+
         .project-tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 15px;
+            margin: 0 0 16px;
             padding: 0;
             list-style: none;
         }
+
         .tech-tag {
-            background-color: #eff6ff;
-            color: #2563eb;
+            background-color: var(--blue-soft);
+            color: var(--blue);
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 650;
             padding: 4px 12px;
             border-radius: 20px;
-            border: 1px solid #bfdbfe;
+            border: 1px solid var(--blue-border);
         }
+
         .project-link {
-            color: #0284c7;
+            color: var(--link);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 650;
             display: inline-flex;
             align-items: center;
             gap: 6px;
         }
+
         .project-link:hover {
             text-decoration: underline;
         }
 
-        /* Skills Layout Specifics */
         .skills-category-heading {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--heading);
             margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .skills-category-heading::before {
             content: "•";
-            color: #2563eb;
+            color: var(--blue);
             font-size: 1.8rem;
             line-height: 1;
         }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 20px;
         }
+
         .skill-item {
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 24px 12px;
             text-align: center;
-            background: #ffffff;
+            background: var(--card);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .skill-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
+
         .skill-icon-container {
             width: 48px;
             height: 48px;
-            background-color: #eff6ff;
+            background-color: var(--blue-soft);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -224,84 +275,339 @@
             margin: 0 auto 16px auto;
             font-size: 1.5rem;
         }
+
         .skill-name {
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 650;
             color: #1e293b;
             margin: 0 0 4px 0;
             line-height: 1.2;
         }
+
         .skill-level {
             font-size: 0.8rem;
-            color: #64748b;
+            color: var(--muted);
             margin: 0;
+        }
+
+
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .about-text {
+            color: #475569;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .about-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .education-list li {
+            border-left: 3px solid var(--blue);
+            padding-left: 14px;
+            margin-bottom: 18px;
+        }
+
+        .education-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .education-degree {
+            display: block;
+            color: var(--heading);
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .education-school {
+            display: block;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 55px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 24px 14px;
+            }
+
+            .profile-container,
+            .outer-content-box {
+                padding: 26px 18px;
+            }
+
+            .inner-item-card {
+                padding: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 14px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <header class="profile-container">
+        <h1 class="profile-name">Salim Bukari</h1>
+        <p class="profile-title">Electrical engineer & AI master's student </p>
+        <p class="profile-summary">
+            Portfolio focused on artificial intelligence, deep learning, multimodal systems, embedded development,
+            and the intersection between software, data, and electrical engineering.
+        </p>
 
-    <!-- Profile Header Section -->
-    <div class="profile-container">
-        <h1 class="profile-name">Bukari Salim</h1>
-        <p class="profile-title">AI / Machine Learning Engineer</p>
-        
-        <div class="button-group">
-            <a href="https://github.com" target="_blank" class="social-btn">
+        <nav class="button-group" aria-label="Social links">
+            <a href="https://github.com/bukarisalim-collab" target="_blank" rel="noopener noreferrer" class="social-btn">
                 🐙 GitHub
             </a>
-            <a href="https://linktr.ee" target="_blank" class="social-btn">
+            <a href="https://www.linkedin.com/in/salim-bukari-3844581a8/" target="_blank" rel="noopener noreferrer" class="social-btn">
                 🌳 Linktree
             </a>
+        </nav>
+    </header>
+
+    <section aria-labelledby="about-heading">
+        <div class="section-title-container">
+            <h2 id="about-heading" class="section-title">About Me</h2>
+            <div class="title-underline"></div>
         </div>
-    </div>
 
-    <!-- 1. PROFESSIONAL EXPERIENCE SECTION -->
-    <div class="section-title-container">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="title-underline"></div>
-    </div>
-
-    <div class="outer-content-box">
-        <!-- Experience Item Box -->
-        <div class="inner-item-card">
-            <div class="exp-header">
+        <div class="outer-content-box">
+            <div class="about-grid">
                 <div>
-                    <h3 class="exp-company-role">EY GDS | Senior Technology Consultant II</h3>
-                    <p class="exp-date">December 2024 - Present</p>
+                    <p class="about-text">
+                        I am a master's student in Artificial Intelligence and Internet of Things with a background in electrical engineering.
+                        This site highlights selected projects where I explore my interests in AI, machine learning, embedded systems,
+                        data analysis, and the connection between software and hardware.
+                    </p>
+                    <p class="about-text">
+                        My goal is to develop a strong understanding of advanced technical systems and contribute to practical solutions that combine engineering, software, and modern AI methods. 
+                        I am especially interested in how complex systems can be analyzed, improved, and automated through data-driven approaches.
+                    </p>
                 </div>
-                <div class="exp-logo-placeholder">EY</div>
+
+                <div>
+                    <ul class="education-list" aria-label="Education">
+                        <li>
+                            <span class="education-degree">MSc Artificial Intelligence & Internet of Things</span>
+                            <span class="education-school">University of Agder · 2025 – 2027</span>
+                        </li>
+                        <li>
+                            <span class="education-degree">BSc Electrical Engineering</span>
+                            <span class="education-school">University of Stavanger · 2022 – 2025</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <p style="margin: 0; font-size: 0.95rem; color: #475569;">
-                Describe your primary responsibilities, engineering contributions, and key machine learning or technical achievements in this role here.
-            </p>
         </div>
-    </div>
+    </section>
 
-    <!-- 2. FEATURED PROJECTS SECTION -->
-    <div class="section-title-container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="title-underline"></div>
-    </div>
 
-    <div class="outer-content-box">
-        <!-- Project Sub-Box 1 -->
-        <div class="inner-item-card">
-            <h3 class="project-title">🚀 DNN Multimodal Architecture</h3>
-            <p class="project-description">
-                An advanced multimodal deep learning architecture featuring a four-stage pipeline designed for joint text and image processing, analysis, and alignment. Evaluates various fusion strategies including early fusion, late fusion, Graph Neural Networks (GNNs), and CLIP embeddings.
-            </p>
-            <ul class="project-tech-tags">
-                <li class="tech-tag">Python</li>
-                <li class="tech-tag">PyTorch</li>
-                <li class="tech-tag">GNNs</li>
-                <li class="tech-tag">CLIP</li>
-            </ul>
-            <a href="https://github.com/DNN-mulltimodal-architecture" class="project-link" target="_blank">
-                💻 Source Code Repository
-            </a>
+    <section aria-labelledby="experience-heading">
+        <div class="section-title-container">
+            <h2 id="experience-heading" class="section-title">Professional Experience</h2>
+            <div class="title-underline"></div>
         </div>
 
-        <!-- Project Sub-Box 2 (Template for your next project) -->
-        <div class="inner-item-card">
-            <h3 class="project-title">🚀 Future Project Title</h3>
-            <p class="project-description">
+        <div class="outer-content-box">
+            <article class="inner-item-card">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-company-role">Technology & Development Intern | Lyse Lnett</h3>
+                        <p class="exp-date">June 2026 – August 2026</p>
+                    </div>
+                    <div class="company-badge">Lnett</div>
+                </div>
+                <p class="experience-description">
+                    xxx.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+        <div class="section-title-container">
+            <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="outer-content-box">
+            <article class="inner-item-card">
+                <h3 class="project-title">🚀 DNN Multimodal Architecture</h3>
+                <p class="project-description">
+                    A multimodal deep learning project for joint text and image processing. The project evaluates fusion
+                    strategies such as early fusion, late fusion, graph-inspired fusion, GNN-based approaches, and CLIP embeddings.
+                </p>
+                <ul class="project-tech-tags">
+                    <li class="tech-tag">Python</li>
+                    <li class="tech-tag">PyTorch</li>
+                    <li class="tech-tag">Torchvision</li>
+                    <li class="tech-tag">Transformers</li>
+                    <li class="tech-tag">CLIP</li>
+                    <li class="tech-tag">GNNs</li>
+                </ul>
+                <a href="https://github.com/bukarisalim/DNN-mulltimodal-architecture" class="project-link" target="_blank" rel="noopener noreferrer">
+                    💻 Source Code Repository
+                </a>
+            </article>
+
+            <article class="inner-item-card">
+                <h3 class="project-title">🌱 Smart Plant Monitoring System</h3>
+                <p class="project-description">
+                    Planned embedded and data-driven project combining sensors, microcontrollers, Bluetooth/app integration,
+                    and predictive analysis to monitor plant moisture patterns and watering needs over time.
+                </p>
+                <ul class="project-tech-tags">
+                    <li class="tech-tag">STM32</li>
+                    <li class="tech-tag">Sensors</li>
+                    <li class="tech-tag">Embedded C</li>
+                    <li class="tech-tag">Python</li>
+                    <li class="tech-tag">Data Analysis</li>
+                </ul>
+            </article>
+
+            <article class="inner-item-card">
+                <h3 class="project-title">📊 RAG Assistant for Technical Documents</h3>
+                <p class="project-description">
+                    Retrieval-Augmented Generation concept for searching and answering questions from technical documents,
+                    course pages, or engineering documentation using embeddings, vector search, and a local or API-based LLM.
+                </p>
+                <ul class="project-tech-tags">
+                    <li class="tech-tag">Python</li>
+                    <li class="tech-tag">LangChain</li>
+                    <li class="tech-tag">ChromaDB</li>
+                    <li class="tech-tag">Embeddings</li>
+                    <li class="tech-tag">LLMs</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+        <div class="section-title-container">
+            <h2 id="skills-heading" class="section-title">Skills & Technologies</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="outer-content-box">
+            <div class="skills-category-heading">Artificial Intelligence & Deep Learning</div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon-container">🔥</div>
+                    <p class="skill-name">PyTorch</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🖼️</div>
+                    <p class="skill-name">Multimodal AI</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🔀</div>
+                    <p class="skill-name">GNNs</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🤗</div>
+                    <p class="skill-name">Transformers</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🤖</div>
+                    <p class="skill-name">Computer Vision</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-content-box">
+            <div class="skills-category-heading">Electrical & Hardware Engineering</div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon-container">📟</div>
+                    <p class="skill-name">Embedded C</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🔌</div>
+                    <p class="skill-name">PCB Design</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">⚙️</div>
+                    <p class="skill-name">Microcontrollers</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">📐</div>
+                    <p class="skill-name">MATLAB</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">📡</div>
+                    <p class="skill-name">Signal Processing</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-content-box">
+            <div class="skills-category-heading">Core Languages & Development Tools</div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon-container">🐍</div>
+                    <p class="skill-name">Python</p>
+                    <p class="skill-level">Advanced</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">💻</div>
+                    <p class="skill-name">C / C++</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🌿</div>
+                    <p class="skill-name">Git</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">📊</div>
+                    <p class="skill-name">Data Analysis</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-container">🧰</div>
+                    <p class="skill-name">VS Code</p>
+                    <p class="skill-level">Intermediate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Salim Bukari. Built for GitHub Pages.</p>
+    </footer>
+</body>
+</html>
