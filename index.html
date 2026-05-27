@@ -9,7 +9,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
             background-color: #f4f6f8;
@@ -22,7 +22,7 @@
             padding: 40px 20px;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .profile-name {
             font-size: 2.5rem;
@@ -63,11 +63,12 @@
         }
 
         /* Project Card Styling */
-        .project-card {
+        .content-card {
             background: #ffffff;
             border-radius: 16px;
             padding: 32px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
         }
         h2, h3 {
             color: #0f172a;
@@ -87,29 +88,116 @@
         .project-link:hover {
             text-decoration: underline;
         }
+
+        /* Image-Style Skills Section Layout */
+        .section-title-container {
+            text-align: center;
+            margin-bottom: 35px;
+            margin-top: 50px;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .title-underline {
+            width: 50px;
+            height: 4px;
+            background-color: #2563eb;
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+        
+        /* Clean Outer Box Layout to match screenshot */
+        .skills-outer-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 35px;
+            background-color: #ffffff;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+        .skills-category-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skills-category-heading::before {
+            content: "•";
+            color: #2563eb;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        
+        /* Dynamic Grid for Sub-boxes */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Clean Sub-boxes to match screenshot precisely */
+        .skill-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 12px;
+            text-align: center;
+            background: #ffffff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .skill-icon-container {
+            width: 48px;
+            height: 48px;
+            background-color: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            font-size: 1.5rem;
+        }
+        .skill-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+        .skill-level {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Inspired Profile Section -->
+    <!-- Profile Section -->
     <div class="profile-container">
-        <h1 class="profile-name">Salim Bukari</h1>
-        <p class="profile-title"> Electrical engineer and AI masters student</p>
+        <h1 class="profile-name">Bukari Salim</h1>
+        <p class="profile-title">AI / Machine Learning Engineer</p>
         
         <div class="button-group">
-            <!-- GitHub Button -->
-            <a href="https://github.com/bukarisalim-collab" target="_blank" class="social-btn">
+            <a href="https://github.com" target="_blank" class="social-btn">
                 🐙 GitHub
             </a>
-            <!-- Linktree Button (Update the href URL with your actual Linktree link) -->
-            <a href="https://www.linkedin.com/in/salim-bukari-3844581a8/" target="_blank" class="social-btn">
+            <a href="https://linktr.ee" target="_blank" class="social-btn">
                 🌳 Linktree
             </a>
         </div>
     </div>
 
     <!-- Project Showcase Section -->
-    <div class="project-card">
+    <div class="content-card">
         <h2>🚀 Featured Project: DNN Multimodal Architecture</h2>
         
         <h3>📋 Overview</h3>
@@ -123,105 +211,85 @@
         </ul>
 
         <h3>🔗 Links & Resources</h3>
-        <p>💻 <a href="https://github.com/bukarisalim-collab/DNN-mulltimodal-architecture" class="project-link" target="_blank">Source Code Repository</a></p>
+        <p>💻 <a href="https://github.com/DNN-mulltimodal-architecture" class="project-link" target="_blank">Source Code Repository</a></p>
     </div>
-        <!-- Skills & Technologies Block -->
+
+    <!-- Skills & Technologies Block -->
     <div class="section-title-container">
         <h2 class="section-title">Skills & Technologies</h2>
         <div class="title-underline"></div>
     </div>
 
-    <!-- 1. AI & Machine Learning Specialization -->
+    <!-- 1. AI & Machine Learning Specialization Box -->
     <div class="skills-outer-box">
-        <div class="skills-category-heading">🧠 Artificial Intelligence & Deep Learning</div>
+        <div class="skills-category-heading">Artificial Intelligence & Deep Learning</div>
         <div class="skills-grid">
             <div class="skill-item">
-                <div class="skill-icon">🔥</div>
-                <div class="skill-name">PyTorch</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🔥</div>
+                <p class="skill-name">PyTorch</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">🖼️</div>
-                <div class="skill-name">Multimodal</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🖼️</div>
+                <p class="skill-name">Multimodal</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">🔀</div>
-                <div class="skill-name">GNNs</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🔀</div>
+                <p class="skill-name">GNNs</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">🤗</div>
-                <div class="skill-name">Transformers</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🤗</div>
+                <p class="skill-name">Transformers</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">🤖</div>
-                <div class="skill-name">Computer Vision</div>
-                <div class="skill-level">Intermediate</div>
+                <div class="skill-icon-container">🤖</div>
+                <p class="skill-name">Computer Vision</p>
+                <p class="skill-level">Intermediate</p>
             </div>
         </div>
     </div>
 
-    <!-- 2. Electrical & Hardware Engineering -->
+    <!-- 2. Electrical & Hardware Engineering Box -->
     <div class="skills-outer-box">
-        <div class="skills-category-heading">⚡ Electrical & Hardware Engineering</div>
+        <div class="skills-category-heading">Electrical & Hardware Engineering</div>
         <div class="skills-grid">
             <div class="skill-item">
-                <div class="skill-icon">📟</div>
-                <div class="skill-name">Embedded C</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">📟</div>
+                <p class="skill-name">Embedded C</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">🔌</div>
-                <div class="skill-name">PCB Design</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🔌</div>
+                <p class="skill-name">PCB Design</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">⚙️</div>
-                <div class="skill-name">Microcontrollers</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">⚙️</div>
+                <p class="skill-name">Microcontrollers</p>
+                <p class="skill-level">Advanced</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">📐</div>
-                <div class="skill-name">MATLAB</div>
-                <div class="skill-level">Intermediate</div>
+                <div class="skill-icon-container">📐</div>
+                <p class="skill-name">MATLAB</p>
+                <p class="skill-level">Intermediate</p>
             </div>
             <div class="skill-item">
-                <div class="skill-icon">📡</div>
-                <div class="skill-name">Signal Processing</div>
-                <div class="skill-level">Intermediate</div>
+                <div class="skill-icon-container">📡</div>
+                <p class="skill-name">Signal Processing</p>
+                <p class="skill-level">Intermediate</p>
             </div>
         </div>
     </div>
 
-    <!-- 3. Core Languages & Dev Tools -->
+    <!-- 3. Core Languages & Dev Tools Box -->
     <div class="skills-outer-box">
-        <div class="skills-category-heading">🛠️ Core Languages & Systems</div>
+        <div class="skills-category-heading">Core Languages & Systems</div>
         <div class="skills-grid">
             <div class="skill-item">
-                <div class="skill-icon">🐍</div>
-                <div class="skill-name">Python</div>
-                <div class="skill-level">Advanced</div>
+                <div class="skill-icon-container">🐍</div>
+                <p class="skill-name">Python</p>
+                <p class="skill-level">Advanced</p>
             </div>
-            <div class="skill-item">
-                <div class="skill-icon">🐚</div>
-                <div class="skill-name">Shell Scripting</div>
-                <div class="skill-level">Advanced</div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">📦</div>
-                <div class="skill-name">Git / GitHub</div>
-                <div class="skill-level">Advanced</div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-icon">🐳</div>
-                <div class="skill-name">Docker</div>
-                <div class="skill-level">Intermediate</div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
-
