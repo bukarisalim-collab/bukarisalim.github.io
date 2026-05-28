@@ -39,15 +39,6 @@
             background-color: var(--bg);
         }
 
-        /* Keeps section titles visible below the sticky navbar when clicking menu links. */
-        #home,
-        #experience,
-        #projects,
-        #skills,
-        #contact {
-            scroll-margin-top: 105px;
-        }
-
         .top-nav {
             position: sticky;
             top: 0;
@@ -95,6 +86,11 @@
             pointer-events: none;
             transform: translateX(0);
             transition: transform 0.25s ease, width 0.25s ease, opacity 0.2s ease;
+        }
+
+        section,
+        .profile-container {
+            scroll-margin-top: 120px;
         }
 
         h1, h2, h3, p {
@@ -449,19 +445,15 @@
                 padding: 24px 14px;
             }
 
-            #home,
-            #experience,
-            #projects,
-            #skills,
-            #contact {
-                scroll-margin-top: 24px;
-            }
-
             .top-nav {
                 position: static;
                 justify-content: flex-start;
                 overflow-x: auto;
                 flex-wrap: nowrap;
+            }
+
+            .nav-position-indicator {
+                display: none;
             }
 
             .nav-link {
@@ -725,7 +717,6 @@
         </div>
     </section>
 
-
     <section id="contact" aria-labelledby="contact-heading">
         <div class="section-title-container">
             <h2 id="contact-heading" class="section-title">Contact</h2>
@@ -757,9 +748,28 @@
         const sections = document.querySelectorAll("#home, #experience, #projects, #skills, #contact");
 
         function getNavOffset() {
-            /* Extra spacing below the sticky nav so titles remain visible. */
-            if (window.innerWidth <= 640) return 24;
-            return nav.offsetHeight + 28;
+            /*
+                This offset controls how much free space appears above the section title
+                after clicking a menu item. Increase the extra number if you want even
+                more visible space between the sticky menu and the title.
+            */
+            const navIsSticky = window.getComputedStyle(nav).position === "sticky";
+            return navIsSticky ? nav.offsetHeight + 42 : 18;
+        }
+
+        function getScrollTarget(section) {
+            if (!section) return null;
+
+            /*
+                Home should scroll to the profile card itself.
+                Other menu items should scroll to the visible title container,
+                because that is what the user expects to see at the top.
+            */
+            if (section.id === "home") {
+                return section;
+            }
+
+            return section.querySelector(".section-title-container") || section;
         }
 
         function moveNavIndicator(activeLink) {
@@ -775,8 +785,24 @@
             navIndicator.style.opacity = "1";
         }
 
+        function scrollToSection(section) {
+            const scrollTarget = getScrollTarget(section);
+            if (!scrollTarget) return;
+
+            const targetPosition =
+                scrollTarget.getBoundingClientRect().top +
+                window.scrollY -
+                getNavOffset();
+
+            window.scrollTo({
+                top: Math.max(targetPosition, 0),
+                behavior: "smooth"
+            });
+        }
+
         function updateActiveSection() {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
             const documentHeight = Math.max(
                 document.body.scrollHeight,
                 document.documentElement.scrollHeight,
@@ -785,16 +811,30 @@
                 document.body.clientHeight,
                 document.documentElement.clientHeight
             );
+
             const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const lowestPossibleScroll = documentHeight - viewportHeight;
             const reachedLowestPosition = scrollTop >= lowestPossibleScroll - 2;
+
             let currentSection = "home";
 
+            /*
+                Contact is the final menu item, so it should activate at the
+                lowest possible scroll position. This does not depend on whether
+                the Contact section itself can pass the normal section threshold.
+            */
             if (reachedLowestPosition) {
                 currentSection = "contact";
             } else {
                 sections.forEach((section) => {
-                    const sectionTop = section.offsetTop - getNavOffset();
+                    const scrollTarget = getScrollTarget(section);
+                    if (!scrollTarget) return;
+
+                    const sectionTop =
+                        scrollTarget.getBoundingClientRect().top +
+                        window.scrollY -
+                        getNavOffset() -
+                        12;
 
                     if (scrollTop >= sectionTop) {
                         currentSection = section.getAttribute("id");
@@ -803,6 +843,7 @@
             }
 
             let activeLink = null;
+
             navLinks.forEach((link) => {
                 const isActive = link.getAttribute("href") === `#${currentSection}`;
                 link.classList.toggle("active", isActive);
@@ -818,16 +859,11 @@
 
                 const targetId = link.getAttribute("href");
                 const targetSection = document.querySelector(targetId);
-                if (!targetSection) return;
 
-                const targetPosition = targetSection.offsetTop - getNavOffset();
+                scrollToSection(targetSection);
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth"
-                });
-
-                history.pushState(null, "", targetId);
+                navLinks.forEach((navLink) => navLink.classList.remove("active"));
+                link.classList.add("active");
                 moveNavIndicator(link);
             });
         });
@@ -835,6 +871,7 @@
         window.addEventListener("scroll", updateActiveSection);
         window.addEventListener("resize", updateActiveSection);
         window.addEventListener("load", updateActiveSection);
+
         updateActiveSection();
     </script>
 </body>
