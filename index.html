@@ -39,6 +39,15 @@
             background-color: var(--bg);
         }
 
+        /* Keeps section titles visible below the sticky navbar when clicking menu links. */
+        #home,
+        #experience,
+        #projects,
+        #skills,
+        #contact {
+            scroll-margin-top: 105px;
+        }
+
         .top-nav {
             position: sticky;
             top: 0;
@@ -343,8 +352,6 @@
             margin: 0;
         }
 
-
-
         .home-about {
             max-width: 850px;
             margin: 30px auto 0;
@@ -440,6 +447,14 @@
         @media (max-width: 640px) {
             body {
                 padding: 24px 14px;
+            }
+
+            #home,
+            #experience,
+            #projects,
+            #skills,
+            #contact {
+                scroll-margin-top: 24px;
             }
 
             .top-nav {
@@ -741,6 +756,12 @@
         const navLinks = document.querySelectorAll(".nav-link");
         const sections = document.querySelectorAll("#home, #experience, #projects, #skills, #contact");
 
+        function getNavOffset() {
+            /* Extra spacing below the sticky nav so titles remain visible. */
+            if (window.innerWidth <= 640) return 24;
+            return nav.offsetHeight + 28;
+        }
+
         function moveNavIndicator(activeLink) {
             if (!activeLink || !navIndicator) return;
 
@@ -769,17 +790,11 @@
             const reachedLowestPosition = scrollTop >= lowestPossibleScroll - 2;
             let currentSection = "home";
 
-            /*
-                Contact is the final menu item, so it should activate at the
-                lowest possible scroll position. This does not depend on whether
-                the Contact section itself can pass the normal section threshold.
-            */
             if (reachedLowestPosition) {
                 currentSection = "contact";
             } else {
                 sections.forEach((section) => {
-                    const navOffset = nav.offsetHeight + 40;
-                    const sectionTop = section.offsetTop - navOffset;
+                    const sectionTop = section.offsetTop - getNavOffset();
 
                     if (scrollTop >= sectionTop) {
                         currentSection = section.getAttribute("id");
@@ -798,8 +813,22 @@
         }
 
         navLinks.forEach((link) => {
-            link.addEventListener("click", () => {
-                requestAnimationFrame(() => moveNavIndicator(link));
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                const targetId = link.getAttribute("href");
+                const targetSection = document.querySelector(targetId);
+                if (!targetSection) return;
+
+                const targetPosition = targetSection.offsetTop - getNavOffset();
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+
+                history.pushState(null, "", targetId);
+                moveNavIndicator(link);
             });
         });
 
