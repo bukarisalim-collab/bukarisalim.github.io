@@ -755,17 +755,26 @@
         }
 
         function updateActiveSection() {
-            const scrollTop = window.scrollY;
-            const scrollBottom = window.innerHeight + scrollTop;
-            const pageHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight,
+                document.documentElement.clientHeight
+            );
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const lowestPossibleScroll = documentHeight - viewportHeight;
+            const reachedLowestPosition = scrollTop >= lowestPossibleScroll - 2;
             let currentSection = "home";
 
             /*
-                The contact section is the last section on the page.
-                On many screens, it may not scroll high enough to pass the normal
-                sectionTop check, so we force Contact active near the bottom.
+                Contact is the final menu item, so it should activate at the
+                lowest possible scroll position. This does not depend on whether
+                the Contact section itself can pass the normal section threshold.
             */
-            if (pageHeight - scrollBottom <= 8) {
+            if (reachedLowestPosition) {
                 currentSection = "contact";
             } else {
                 sections.forEach((section) => {
