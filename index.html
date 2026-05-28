@@ -756,14 +756,27 @@
 
         function updateActiveSection() {
             const scrollTop = window.scrollY;
+            const scrollBottom = window.innerHeight + scrollTop;
+            const pageHeight = document.documentElement.scrollHeight;
             let currentSection = "home";
 
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop - 130;
-                if (scrollTop >= sectionTop) {
-                    currentSection = section.getAttribute("id");
-                }
-            });
+            /*
+                The contact section is the last section on the page.
+                On many screens, it may not scroll high enough to pass the normal
+                sectionTop check, so we force Contact active near the bottom.
+            */
+            if (pageHeight - scrollBottom <= 8) {
+                currentSection = "contact";
+            } else {
+                sections.forEach((section) => {
+                    const navOffset = nav.offsetHeight + 40;
+                    const sectionTop = section.offsetTop - navOffset;
+
+                    if (scrollTop >= sectionTop) {
+                        currentSection = section.getAttribute("id");
+                    }
+                });
+            }
 
             let activeLink = null;
             navLinks.forEach((link) => {
@@ -775,8 +788,15 @@
             moveNavIndicator(activeLink);
         }
 
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                requestAnimationFrame(() => moveNavIndicator(link));
+            });
+        });
+
         window.addEventListener("scroll", updateActiveSection);
         window.addEventListener("resize", updateActiveSection);
+        window.addEventListener("load", updateActiveSection);
         updateActiveSection();
     </script>
 </body>
