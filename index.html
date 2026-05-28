@@ -25,14 +25,67 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text);
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 24px 20px 40px;
             background-color: var(--bg);
+        }
+
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: rgba(244, 246, 248, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 10px 10px 14px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 650;
+            font-size: 0.92rem;
+            padding: 8px 14px;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .nav-position-indicator {
+            position: absolute;
+            bottom: 7px;
+            left: 0;
+            height: 4px;
+            width: 34px;
+            background: var(--blue);
+            border-radius: 999px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(0);
+            transition: transform 0.25s ease, width 0.25s ease, opacity 0.2s ease;
         }
 
         h1, h2, h3, p {
@@ -292,6 +345,14 @@
 
 
 
+        .home-about {
+            max-width: 850px;
+            margin: 30px auto 0;
+            text-align: left;
+            border-top: 1px solid var(--border);
+            padding-top: 28px;
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: 1.4fr 1fr;
@@ -338,6 +399,37 @@
             font-size: 0.92rem;
         }
 
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--card);
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+            font-weight: 650;
+        }
+
+        .contact-link {
+            color: var(--link);
+            font-weight: 700;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
         .footer {
             text-align: center;
             color: var(--muted);
@@ -348,6 +440,17 @@
         @media (max-width: 640px) {
             body {
                 padding: 24px 14px;
+            }
+
+            .top-nav {
+                position: static;
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .nav-link {
+                white-space: nowrap;
             }
 
             .profile-container,
@@ -371,7 +474,16 @@
     </style>
 </head>
 <body>
-    <header class="profile-container">
+    <nav class="top-nav" aria-label="Main navigation">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <span class="nav-position-indicator" id="nav-position-indicator" aria-hidden="true"></span>
+    </nav>
+
+    <header id="home" class="profile-container">
         <h1 class="profile-name">Salim Bukari</h1>
         <p class="profile-title">Electrical engineer & AI master's student </p>
         <p class="profile-summary">
@@ -387,15 +499,8 @@
                 🌳 Linktree
             </a>
         </nav>
-    </header>
 
-    <section aria-labelledby="about-heading">
-        <div class="section-title-container">
-            <h2 id="about-heading" class="section-title">About Me</h2>
-            <div class="title-underline"></div>
-        </div>
-
-        <div class="outer-content-box">
+        <div class="home-about">
             <div class="about-grid">
                 <div>
                     <p class="about-text">
@@ -404,7 +509,7 @@
                         data analysis, and the connection between software and hardware.
                     </p>
                     <p class="about-text">
-                        My goal is to develop a strong understanding of advanced technical systems and contribute to practical solutions that combine engineering, software, and modern AI methods. 
+                        My goal is to develop a strong understanding of advanced technical systems and contribute to practical solutions that combine engineering, software, and modern AI methods.
                         I am especially interested in how complex systems can be analyzed, improved, and automated through data-driven approaches.
                     </p>
                 </div>
@@ -423,10 +528,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-
-    <section aria-labelledby="experience-heading">
+    <section id="experience" aria-labelledby="experience-heading">
         <div class="section-title-container">
             <h2 id="experience-heading" class="section-title">Professional Experience</h2>
             <div class="title-underline"></div>
@@ -448,7 +552,7 @@
         </div>
     </section>
 
-    <section aria-labelledby="projects-heading">
+    <section id="projects" aria-labelledby="projects-heading">
         <div class="section-title-container">
             <h2 id="projects-heading" class="section-title">Featured Projects</h2>
             <div class="title-underline"></div>
@@ -506,7 +610,7 @@
         </div>
     </section>
 
-    <section aria-labelledby="skills-heading">
+    <section id="skills" aria-labelledby="skills-heading">
         <div class="section-title-container">
             <h2 id="skills-heading" class="section-title">Skills & Technologies</h2>
             <div class="title-underline"></div>
@@ -606,8 +710,74 @@
         </div>
     </section>
 
+
+    <section id="contact" aria-labelledby="contact-heading">
+        <div class="section-title-container">
+            <h2 id="contact-heading" class="section-title">Contact</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="outer-content-box">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <p class="contact-label">Email</p>
+                    <a href="mailto:salimbuk@hotmail.com" class="contact-link">salimbuk@hotmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <p class="contact-label">Phone</p>
+                    <a href="tel:+4748431455" class="contact-link">+47 48431455</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <p>© 2026 Salim Bukari. Built for GitHub Pages.</p>
     </footer>
+
+    <script>
+        const nav = document.querySelector(".top-nav");
+        const navIndicator = document.getElementById("nav-position-indicator");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll("#home, #experience, #projects, #skills, #contact");
+
+        function moveNavIndicator(activeLink) {
+            if (!activeLink || !navIndicator) return;
+
+            const navRect = nav.getBoundingClientRect();
+            const linkRect = activeLink.getBoundingClientRect();
+            const indicatorWidth = Math.max(28, linkRect.width * 0.55);
+            const indicatorLeft = linkRect.left - navRect.left + (linkRect.width - indicatorWidth) / 2;
+
+            navIndicator.style.width = `${indicatorWidth}px`;
+            navIndicator.style.transform = `translateX(${indicatorLeft}px)`;
+            navIndicator.style.opacity = "1";
+        }
+
+        function updateActiveSection() {
+            const scrollTop = window.scrollY;
+            let currentSection = "home";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop - 130;
+                if (scrollTop >= sectionTop) {
+                    currentSection = section.getAttribute("id");
+                }
+            });
+
+            let activeLink = null;
+            navLinks.forEach((link) => {
+                const isActive = link.getAttribute("href") === `#${currentSection}`;
+                link.classList.toggle("active", isActive);
+                if (isActive) activeLink = link;
+            });
+
+            moveNavIndicator(activeLink);
+        }
+
+        window.addEventListener("scroll", updateActiveSection);
+        window.addEventListener("resize", updateActiveSection);
+        updateActiveSection();
+    </script>
 </body>
 </html>
